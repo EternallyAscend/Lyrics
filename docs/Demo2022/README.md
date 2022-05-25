@@ -22,7 +22,7 @@
 | 5 | 坐上你的車 | Legend | Pop | 9:01:15 |
 | 6 | 給我一個痛快 | Legend | Pop | 4:12:21 |
 
-`CD` `CUE`文件 [张雨生 - 乐界.cue](./Album/张雨生%20-%20乐界.cue) 需命名专辑文件为[`张雨生 - 乐界.wav`](https://www.aliyundrive.com/s/SpRuC4maam5)，歌词文件为`张雨生 - 乐界_N.lrc`格式。上述表格与`CUE`文件均为个人组合版本。
+`CD` `CUE`文件 [张雨生 - 乐界.cue](./Album/张雨生%20-%20乐界.cue) 需命名专辑文件为`张雨生 - 乐界.wav`，歌词文件为`张雨生 - 乐界_N.lrc`格式。上述表格与`CUE`文件均为个人组合版本,`wav`文件按照顺序紧密拼接即可。
 
 ## 歌词与时间线
 
@@ -39,13 +39,13 @@
 
 感谢各位宝友对于歌词的完善与修改。[最初版本的歌词](https://www.bilibili.com/video/BV18u411y7my/)经过修改逐渐展示出宝哥希望表达的内容。同时也欢迎宝友继续在[Github Issue](https://github.com/EternallyAscend/lyrics/issues)中继续留言评论  ，逐步完善歌词内容。
 
-Bilibili用户 [F不在服务区](https://space.bilibili.com/598752578)
+- Bilibili用户 [F不在服务区](https://space.bilibili.com/598752578)
 
-Bilibili用户 [去二仙桥吃冒菜](https://space.bilibili.com/179834369)
+- Bilibili用户 [去二仙桥吃冒菜](https://space.bilibili.com/179834369)
 
-Bilibili用户 [晨曦的蓝色之光-暗号](https://space.bilibili.com/282484247)
+- Bilibili用户 [晨曦的蓝色之光-暗号](https://space.bilibili.com/282484247)
 
-Bilibili用户 [雪狸安](https://space.bilibili.com/326492844)
+- Bilibili用户 [雪狸安](https://space.bilibili.com/326492844)
 
 如有遗漏请联系添加，[Bilibili链接](https://space.bilibili.com/586089080)。
 
