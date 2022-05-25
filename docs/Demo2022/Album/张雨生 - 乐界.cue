@@ -1,0 +1,34 @@
+REM DISCID 840BAE0A
+REM COMMENT "ExactAudioCopy v0.99pb5"
+PERFORMER "张雨生"
+TITLE "乐界"
+FILE "张雨生 - 乐界.wav" WAVE
+  TRACK 01 AUDIO
+    TITLE "年老"
+    PERFORMER "张雨生"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "了解之后"
+    PERFORMER "张雨生"
+    INDEX 00 04:48:24
+    INDEX 01 04:48:24
+  TRACK 03 AUDIO
+    TITLE "一直这样唱"
+    PERFORMER "张雨生"
+    INDEX 00 09:49:21
+    INDEX 01 09:49:21
+  TRACK 04 AUDIO
+    TITLE "我们的歌"
+    PERFORMER "张雨生"
+    INDEX 00 12:26:04
+    INDEX 01 12:26:04
+  TRACK 05 AUDIO
+    TITLE "坐上你的车"
+    PERFORMER "张雨生"
+    INDEX 00 18:51:06
+    INDEX 01 18:51:06
+  TRACK 06 AUDIO
+    TITLE "给我一个痛快"
+    PERFORMER "张雨生"
+    INDEX 00 27:52:21
+    INDEX 01 27:52:21
