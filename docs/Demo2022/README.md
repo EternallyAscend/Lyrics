@@ -22,7 +22,7 @@
 | 5 | 坐上你的車 | Legend | Pop | 9:01:15 |
 | 6 | 給我一個痛快 | Legend | Pop | 4:12:21 |
 
-`CD` `CUE`文件 [张雨生 - 乐界.cue](./Album/张雨生%20-%20乐界.cue) 需命名专辑文件为`张雨生 - 乐界.wav`，歌词文件为`张雨生 - 乐界_N.lrc`格式。上述表格与`CUE`文件均为个人组合版本,`wav`文件按照顺序紧密拼接即可。
+`CD` `CUE`文件 [张雨生 - 乐界.cue](./Album/张雨生%20-%20乐界.cue) 需命名专辑文件为`张雨生 - 乐界.wav`，歌词文件为`张雨生 - 乐界_N.lrc`格式。歌词与`CUE`相关文件存储在<a href="https://github.com/EternallyAscend/lyrics/tree/master/docs/Demo2022/Album">Album 文件夹</a>内。上述表格与`CUE`文件均为个人组合版本，`wav`文件按照顺序紧密拼接即可。
 
 ## 歌词与时间线
 
