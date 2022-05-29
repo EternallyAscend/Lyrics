@@ -5,6 +5,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"lyrics/pkg/fyneGUI/toolBar"
+	"lyrics/pkg/lyricsMaker/config"
 )
 
 type Controller struct {
@@ -44,11 +45,11 @@ func (that *Controller) Combine() {
 		// 字幕管理
 		// 时间点标记
 		widget.NewToolbarSpacer(),
-		toolBar.NewButton("Begin Flag", theme.ContentAddIcon(), func() {}),
-		toolBar.NewButton("End Flag", theme.ContentAddIcon(), func() {}),
+		toolBar.NewButton(config.Begin+" "+config.Flag, theme.ContentAddIcon(), func() {}),
+		toolBar.NewButton(config.End+" "+config.Flag, theme.ContentAddIcon(), func() {}),
 		// 保存和删除
-		toolBar.NewButton("Add", theme.ConfirmIcon(), func() {}),
-		toolBar.NewButton("Delete", theme.DeleteIcon(), func() {}),
+		toolBar.NewButton(config.Add, theme.ConfirmIcon(), func() {}),
+		toolBar.NewButton(config.Delete, theme.DeleteIcon(), func() {}),
 		widget.NewToolbarSpacer(),
 
 		// 位置调整

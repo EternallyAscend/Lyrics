@@ -50,8 +50,8 @@ func (that *Menu) Combine() {
 		//	log.Println("New document")
 		//}),
 		// 打开文件
-		toolBar.NewButton("Open Project", theme.FolderOpenIcon(), func() {}),
-		toolBar.NewButton("Open Media", theme.FolderOpenIcon(), func() {
+		toolBar.NewButton(config.Project, theme.FolderOpenIcon(), func() {}),
+		toolBar.NewButton(config.Media, theme.FolderOpenIcon(), func() {
 			fileOpen := dialog.NewFileOpen(func(closer fyne.URIReadCloser, err error) {
 				if nil != err {
 					that.mainWindow.UpdateStatus(err.Error())
@@ -64,7 +64,7 @@ func (that *Menu) Combine() {
 				// 打开音频文件
 				for extension := range config.MusicExtension {
 					if config.MusicExtension[extension] == closer.URI().Extension() {
-						that.mainWindow.OpenFile(closer.URI())
+						that.mainWindow.OpenMedia(closer.URI())
 						that.description.UpdateDescription(closer.URI().Name())
 						return
 					}
@@ -72,21 +72,21 @@ func (that *Menu) Combine() {
 				// 打开视频文件
 				for extension := range config.VideoExtension {
 					if config.VideoExtension[extension] == closer.URI().Extension() {
-						that.mainWindow.OpenFile(closer.URI())
+						that.mainWindow.OpenMedia(closer.URI())
 						that.description.UpdateDescription(closer.URI().Name())
 						return
 					}
 				}
 				// 处理不能打开的文件类型
-				that.mainWindow.UpdateStatus("Do not support \"" + closer.URI().Extension() + "\" file.")
+				that.mainWindow.UpdateStatus(config.DoNotSupport + " \"" + closer.URI().Extension() + "\" " + config.File)
 			}, that.mainWindow.window)
 			fileOpen.Show()
 		}),
-		toolBar.NewButton("Open Lyrics", theme.FolderOpenIcon(), func() {}),
-		toolBar.NewButton("Open Timeline", theme.FolderOpenIcon(), func() {}),
+		toolBar.NewButton(config.Lyrics, theme.FolderOpenIcon(), func() {}),
+		toolBar.NewButton(config.Timeline, theme.FolderOpenIcon(), func() {}),
 
 		// 保存文件
-		toolBar.NewButton("Save", theme.DocumentSaveIcon(), func() {}),
+		toolBar.NewButton(config.Save, theme.DocumentSaveIcon(), func() {}),
 
 		// 撤销重做
 		//widget.NewToolbarSeparator(),
@@ -100,15 +100,11 @@ func (that *Menu) Combine() {
 
 		//widget.NewToolbarSeparator(),
 		widget.NewToolbarSpacer(),
-		NewToolbarDescription(that, that.mainWindow.file),
+		NewToolbarDescription(that, that.mainWindow.media),
 		widget.NewToolbarSpacer(),
 		//widget.NewToolbarSeparator(),
 		widget.NewToolbarAction(theme.HelpIcon(), func() {
-			helpDialog := dialog.NewInformation(config.ApplicationTitle, "Author: EternallyAscend\n"+
-				"\nGitHub: https://github.com/EternallyAscend/lyrics\nPage: https://EternallyAscend.github.io/lyrics\n"+
-				"\n本软件提供音频播放制作CUE文件、时间轴、SRT字幕和LRC歌词文件的功能。\n"+
-				"\nThis software provide functions for making cue, timeline srt and lrc.\n\n"+
-				"\nDevelop for Tom Chang.", that.mainWindow.window)
+			helpDialog := dialog.NewInformation(config.HelpDialogTitle, config.HelpDialogMessage, that.mainWindow.window)
 			helpDialog.Show()
 		}),
 	)

@@ -1,6 +1,15 @@
 # MacOS X
 .DS_Store
 
+# Develop
+.idea
+.vscode
+font.ttf
+src/font.ttf
+HarmonyOS Sans
+HarmonyOS Sans.zip
+SourceHanSansSC.zip
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
