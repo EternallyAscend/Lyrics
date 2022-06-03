@@ -4,6 +4,7 @@
 # Develop
 .idea
 .vscode
+asserts
 font.ttf
 src/font.ttf
 HarmonyOS Sans
@@ -16,6 +17,9 @@ SourceHanSansSC.zip
 *.dll
 *.so
 *.dylib
+src/src
+src/main
+src/lyrisMaker
 
 # Test binary, built with `go test -c`
 *.test

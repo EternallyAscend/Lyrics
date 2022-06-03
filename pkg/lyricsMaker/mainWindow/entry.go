@@ -9,7 +9,6 @@ import (
 	"log"
 	"lyrics/pkg/lyricsMaker/config"
 	"lyrics/pkg/lyricsMaker/mainWindow/body"
-	"time"
 )
 
 type MainWindow struct {
@@ -71,6 +70,7 @@ func (that *MainWindow) Load() {
 		that.statusBar.object,
 	))
 
+	// 关闭主窗口时提示保存，确认后关闭
 	that.window.SetCloseIntercept(func() {
 		closeDialog := dialog.NewConfirm(config.CloseDialogTitle, config.CloseDialogMessage, func(confirmed bool) {
 			if confirmed {
@@ -79,8 +79,11 @@ func (that *MainWindow) Load() {
 		}, that.window)
 		closeDialog.Show()
 	})
+
+	// 关闭主窗口时记录日志
 	that.window.SetOnClosed(func() {
-		log.Printf("Lyrics Maker closed at %s.", time.Now().String()[0:19])
+		log.Printf("%s", config.Exit)
+		//log.Printf("Lyrics Maker closed at %s.", time.Now().String()[0:19])
 	})
 
 	// 运行

@@ -4,6 +4,7 @@ const ApplicationTitle = "Lyrics Maker"
 
 // Actions
 
+const Exit = "Exit"
 const Open = "Open"
 const Save = "Save"
 const Export = "Export"
@@ -43,6 +44,7 @@ const Period = "."
 
 // // 动作
 
+//const Exit = "退出"
 //const Open = "打开"
 //const Save = "保存"
 //const Export = "导出"

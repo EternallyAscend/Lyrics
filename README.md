@@ -1,3 +1,7 @@
+# Build
+
+install_name_tool -add_rpath ./lib src
+
 # Lyrics Maker
 
 ## Go

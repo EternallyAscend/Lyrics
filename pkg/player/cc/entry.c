@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "entry.h"
 #include "inc/fmod.h"
+#include "entry.h"
 
 int testGoC() {
     printf("Test Go-C connection.\n");
@@ -16,3 +16,6 @@ char* testGoCString() {
     return test;
 }
 
+int testFmod() {
+    return 0;
+}

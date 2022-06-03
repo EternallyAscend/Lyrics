@@ -1,11 +1,11 @@
 package config
 
+import "lyrics/pkg/player/extensions"
+
 var MusicExtension []string
 var VideoExtension []string
 
 func LoadExtension() {
-	MusicExtension = []string{
-		".mp3", ".wav",
-	}
-	VideoExtension = []string{}
+	MusicExtension = extensions.MusicSupportList
+	VideoExtension = extensions.VideoSupportList
 }
