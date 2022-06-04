@@ -6,4 +6,8 @@ void playFMOD();
 void pauseFMOD();
 void stopFMOD();
 void exitFMOD();
+int getPlayingFMOD();
+unsigned int getLengthFMOD();
+unsigned int getPositionFMOD();
+void setPositionFMOD(unsigned int ms);
 #endif

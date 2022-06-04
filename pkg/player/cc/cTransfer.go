@@ -34,7 +34,7 @@ func SetMediaFMOD(path string) {
 }
 
 func PlayFMOD() {
-	C.playFMOD()
+	go C.playFMOD()
 	log.Println("CGO: Playing with fmod channel.")
 }
 
@@ -46,4 +46,25 @@ func PauseFMOD() {
 func ExitFMOD() {
 	C.exitFMOD()
 	log.Println("CGO: Exit fmod system.")
+}
+
+func GetLengthFMOD() uint32 {
+	res := C.getLengthFMOD()
+	return uint32(res)
+}
+
+func GetPlayingFMOD() bool {
+	res := C.getPlayingFMOD()
+	return 0 != res
+}
+
+func GetPositionFMOD() uint32 {
+	res := C.getPositionFMOD()
+	return uint32(res)
+}
+
+func SetPositionFMOD(ms uint32) {
+	cms := C.uint(ms)
+	C.setPositionFMOD(cms)
+	log.Printf("CGO: Set position %d in fmod system.", ms)
 }

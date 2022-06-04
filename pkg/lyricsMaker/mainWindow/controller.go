@@ -27,7 +27,7 @@ func GenerateController(parent *MainWindow) *Controller {
 func (that *Controller) Combine() {
 	that.object = widget.NewToolbar(
 		// 音量控制
-		toolBar.NewIntController(1,
+		toolBar.NewFloat64ProgressController(1,
 			theme.VolumeDownIcon(),
 			theme.VolumeUpIcon(),
 			0.1,
@@ -59,7 +59,7 @@ func (that *Controller) Combine() {
 		// 缩放调整
 		widget.NewToolbarSpacer(),
 		widget.NewToolbarAction(theme.ZoomFitIcon(), func() {}),
-		toolBar.NewIntController(1,
+		toolBar.NewFloat64ProgressController(1,
 			theme.ZoomInIcon(),
 			theme.ZoomOutIcon(),
 			0.1,

@@ -20,6 +20,7 @@ SourceHanSansSC.zip
 src/src
 src/main
 src/lyricsMaker
+pkg/player/MediaPlayer
 src/lyricsMaker.app
 src/lyricsMaker.dmg
 

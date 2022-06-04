@@ -3,16 +3,17 @@ package fmod
 import (
 	"lyrics/pkg/player/cc"
 	"lyrics/pkg/player/extensions"
+	"time"
 )
 
 type Player struct {
 	path     string
 	music    bool
-	length   int64
+	length   uint32
 	playing  bool
 	speed    float64
 	volume   float64
-	position int64
+	position uint32
 	tune     int64
 }
 
@@ -33,6 +34,17 @@ func GeneratePlayerFMOD() *Player {
 	}
 }
 
+func (that *Player) Listen() {
+	go func() {
+		for that.playing {
+			time.Sleep(time.Millisecond * UpdatePositionGapMS)
+			that.GetPosition()
+			that.GetPlaying()
+		}
+	}()
+}
+
 func (that *Player) Close() {
+	that.Pause()
 	cc.ExitFMOD()
 }

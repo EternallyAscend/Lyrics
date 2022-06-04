@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"log"
 	"lyrics/pkg/lyricsMaker"
 	"lyrics/pkg/player/cc"
@@ -20,9 +19,9 @@ func main() {
 	//Run执行c包含的命令，并阻塞直到完成。  这里stdout被取出，cmd.Wait()无法正确获取stdin,stdout,stderr，则阻塞在那了
 	err2 := cmd.Run()
 	if nil != err2 {
-		fmt.Println("err:", err2)
+		log.Println("err:", err2)
 	}
-	fmt.Println(out.String())
+	log.Println(out.String())
 	player := fmod.GeneratePlayerFMOD()
 	err := player.LoadMedia("/Users/mac/Documents/Projects/Go/lyrics/asserts/test.mp3")
 	if nil != err {

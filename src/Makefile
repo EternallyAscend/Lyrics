@@ -30,7 +30,8 @@ macOS:
 	cp font.ttf $(BINARY_NAME).app/Contents/MacOS/
 	mkdir -p $(BINARY_NAME).app/Contents/MacOS/lib
 	cp -r ./lib/*.dylib $(BINARY_NAME).app/Contents/MacOS/lib
-	install_name_tool -add_rpath /Volumes/lyricsMaker/lyricsMaker.app/Contents/MacOS/lib $(BINARY_NAME).app/Contents/MacOS/src
+	install_name_tool -add_rpath ./lib $(BINARY_NAME).app/Contents/MacOS/src
+	install_name_tool -add_rpath /Volumes/$(BINARY_NAME)/$(BINARY_NAME).app/Contents/MacOS/lib $(BINARY_NAME).app/Contents/MacOS/src
 	install_name_tool -add_rpath /Applications/$(BINARY_NAME).app/Contents/MacOS/lib $(BINARY_NAME).app/Contents/MacOS/src
 run:
 	./$(BINARY_NAME)
