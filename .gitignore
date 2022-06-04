@@ -19,7 +19,9 @@ SourceHanSansSC.zip
 *.dylib
 src/src
 src/main
-src/lyrisMaker
+src/lyricsMaker
+src/lyricsMaker.app
+src/lyricsMaker.dmg
 
 # Test binary, built with `go test -c`
 *.test

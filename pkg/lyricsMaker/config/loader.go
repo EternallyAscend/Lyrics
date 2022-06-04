@@ -6,7 +6,6 @@ import (
 )
 
 func LoadConfig() {
-	log.Println("Loading font file.")
 	//data := make([]byte, 1024)
 	//file, err := os.Open(FontFile)
 	//if nil != err {
@@ -20,15 +19,14 @@ func LoadConfig() {
 	//file.Close()
 	err := os.Setenv(FontEnv, FontFile)
 	if nil != err {
-		log.Println(err)
+		log.Printf("Load config font file %s as %s failed: %s.\n", FontFile, FontEnv, err)
 	}
-	log.Println("Loading extension config.")
 	LoadExtension()
 }
 
 func Close() {
 	err := os.Unsetenv(FontEnv)
 	if err != nil {
-		log.Println(err)
+		log.Println("Unmount config failed: ", err)
 	}
 }

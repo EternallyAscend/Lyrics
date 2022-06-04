@@ -48,22 +48,27 @@ func (that *Player) Playable() bool {
 
 func (that *Player) Play() {
 	if that.Playable() {
-		cc.PlayFMOD()
+		if !that.playing {
+			cc.PlayFMOD()
+			that.playing = true
+		}
 	}
 }
 
 func (that *Player) Pause() {
-
-}
-
-func (that *Player) Stop() {
-	if that.music {
-
-	} else {
-
+	if that.playing {
+		cc.PauseFMOD()
+		that.playing = false
 	}
 }
 
-func (that *Player) Jump() {
+func (that *Player) Stop() {
+	that.Jump()
+	that.Pause()
+}
 
+func (that *Player) Jump() {
+	if that.Playable() {
+
+	}
 }

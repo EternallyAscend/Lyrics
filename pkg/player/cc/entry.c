@@ -3,19 +3,9 @@
 #include "inc/fmod.h"
 #include "entry.h"
 
-int testGoC() {
-    printf("Test Go-C connection.\n");
-    return 0;
-}
-
 char* testGoCString() {
-    int length = 8;
-    printf("%d\n", length);
+    int length = 16;
     char* test = (char*)malloc(length * sizeof(char));
-    sprintf(test, "%s", "testStr");
+    sprintf(test, "%s", "CGO: Connected.");
     return test;
-}
-
-int testFmod() {
-    return 0;
 }

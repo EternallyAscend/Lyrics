@@ -27,7 +27,8 @@ void launchFMOD() {
 }
 
 void setMediaFMOD(char* path) {
-    printf("%s\n", path);
+//    printf("%s\n", path);
+    stopFMOD();
     FMOD_System_CreateSound(f_system, path, FMOD_DEFAULT, NULL, &f_sound);
     FMOD_System_PlaySound(f_system, f_sound, NULL, 1, &f_channel);
     FMOD_Channel_GetFrequency(f_channel, &frequency_base);
@@ -59,12 +60,14 @@ void stopFMOD() {
     if (NULL != f_sound) {
         FMOD_Sound_Release(f_sound);
         if (NULL != f_channel) {
-            f_channel = NULL;
+            FMOD_Channel_Stop(f_channel);
+            // f_channel = NULL;
         }
     }
 }
 
 void exitFMOD() {
+    stopFMOD();
     if (NULL != f_system) {
         FMOD_System_Release(f_system);
     }

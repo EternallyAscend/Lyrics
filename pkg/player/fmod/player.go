@@ -17,8 +17,10 @@ type Player struct {
 }
 
 func GeneratePlayerFMOD() *Player {
+	// 加载启动环境
+	cc.LaunchFMOD()
+	// 加载支持文件列表
 	extensions.LoadMusicSupportList()
-	go cc.LaunchFMOD()
 	return &Player{
 		path:     "",
 		music:    false,
