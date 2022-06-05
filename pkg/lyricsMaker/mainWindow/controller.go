@@ -33,7 +33,7 @@ func (that *Controller) Combine() {
 			0.1,
 			func(result float64) bool {
 				return 0 <= result && result <= 1
-			}, func() {
+			}, func(value float64) {
 				// TODO 调整播放器音量
 			}),
 		// 播放控制
@@ -65,7 +65,7 @@ func (that *Controller) Combine() {
 			0.1,
 			func(result float64) bool {
 				return 0 <= result && result <= 1
-			}, func() {
+			}, func(value float64) {
 				// TODO 调整播放器音量
 			}),
 	)

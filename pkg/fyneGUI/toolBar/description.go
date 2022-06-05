@@ -11,17 +11,17 @@ type TextDescription struct {
 }
 
 func GenerateTextDescriptionPointer(description string) *TextDescription {
-	return &TextDescription{description: widget.NewLabel(description)}
+	return &TextDescription{
+		description: widget.NewLabel(description),
+	}
 }
 
-func NewTextDescriptionPointer(pointer *TextDescription) widget.ToolbarItem {
+func NewTextDescriptionByPointer(pointer *TextDescription) widget.ToolbarItem {
 	return pointer
 }
 
 func NewTextDescription(description string) widget.ToolbarItem {
-	return &TextDescription{
-		description: widget.NewLabel(description),
-	}
+	return GenerateTextDescriptionPointer(description)
 }
 
 func (that *TextDescription) Update(description string) {

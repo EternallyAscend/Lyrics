@@ -1,3 +1,4 @@
 package fmod
 
-const UpdatePositionGapMS = 500
+const UpdateConfigFMOD = 1000
+const UpdatePositionGapMS = 100

@@ -38,10 +38,14 @@ func (that *Player) Listen() {
 	go func() {
 		for that.playing {
 			time.Sleep(time.Millisecond * UpdatePositionGapMS)
-			that.GetPosition()
-			that.GetPlaying()
+			that.getPosition()
+			that.getPlaying()
 		}
 	}()
+}
+
+func (that *Player) GetPath() string {
+	return that.path
 }
 
 func (that *Player) Close() {

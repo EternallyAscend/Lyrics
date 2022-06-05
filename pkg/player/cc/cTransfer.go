@@ -49,22 +49,46 @@ func ExitFMOD() {
 }
 
 func GetLengthFMOD() uint32 {
-	res := C.getLengthFMOD()
-	return uint32(res)
+	clength := C.getLengthFMOD()
+	return uint32(clength)
 }
 
 func GetPlayingFMOD() bool {
-	res := C.getPlayingFMOD()
-	return 0 != res
+	cplaying := C.getPlayingFMOD()
+	return 0 != cplaying
 }
 
 func GetPositionFMOD() uint32 {
-	res := C.getPositionFMOD()
-	return uint32(res)
+	cposition := C.getPositionFMOD()
+	return uint32(cposition)
 }
 
 func SetPositionFMOD(ms uint32) {
 	cms := C.uint(ms)
 	C.setPositionFMOD(cms)
 	log.Printf("CGO: Set position %d in fmod system.", ms)
+}
+
+func SetVolumeFMOD(volume float32) {
+	cvolume := C.float(volume)
+	C.setVolumeFMOD(cvolume)
+	log.Printf("CGO: Set volume %.2f in fmod system.", volume)
+}
+
+func SetFrequencyFMOD(frequency float32) {
+	cfrequency := C.float(frequency)
+	C.setFrequencyFMOD(cfrequency)
+	log.Printf("CGO: Set Frequency %.2f in fmod system.", frequency)
+}
+
+func GetPitchFMOD() float32 {
+	cpitch := C.getPitchFMOD()
+	return float32(cpitch)
+}
+
+func SetPitchFMOD(pitch float32) {
+	cpitch := C.float(pitch)
+	C.setPitchDspFMOD(cpitch)
+	log.Printf("CGO: Set Pitch DPS %.2f in fmod system.", pitch)
+
 }

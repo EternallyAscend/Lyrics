@@ -22,19 +22,26 @@ float frequency_base;
 FMOD_SOUND* f_sound = NULL;
 FMOD_CHANNEL* f_channel = NULL;
 
+FMOD_DSP* f_dsp_pitch = NULL;
+
 void launchFMOD() {
     if (NULL == f_system) {
         FMOD_System_Create(&f_system, FMOD_VERSION);
         FMOD_System_Init(f_system, 256, FMOD_INIT_NORMAL, f_system_extra_data);
+        FMOD_System_CreateDSPByType(f_system, FMOD_DSP_TYPE_PITCHSHIFT, &f_dsp_pitch);
     }
+}
+
+void preparePlayingFMOD() {
+    FMOD_System_PlaySound(f_system, f_sound, NULL, 1, &f_channel);
+    FMOD_Channel_GetFrequency(f_channel, &frequency_base);
+    FMOD_Channel_SetVolume(f_channel, 1);
 }
 
 void setMediaFMOD(char* path) {
     stopFMOD();
     FMOD_System_CreateSound(f_system, path, FMOD_DEFAULT, NULL, &f_sound);
-    FMOD_System_PlaySound(f_system, f_sound, NULL, 1, &f_channel);
-    FMOD_Channel_GetFrequency(f_channel, &frequency_base);
-    FMOD_Channel_SetVolume(f_channel, 1);
+    preparePlayingFMOD();
 }
 
 void playFMOD() {
@@ -51,7 +58,7 @@ void playFMOD() {
             if (!pausing) {
                 FMOD_Channel_IsPlaying(f_channel, &playing);
                 if (!playing) {
-                    FMOD_System_PlaySound(f_system, f_sound, NULL, 1, &f_channel);
+                    preparePlayingFMOD();
                 }
             }
         }
@@ -71,8 +78,9 @@ void stopFMOD() {
         if (NULL != f_channel) {
             FMOD_Channel_Stop(f_channel);
             if (NULL != f_channel) {
-                printf("f_channel is not nullptr.\n");
-            } // f_channel = NULL;
+//                printf("f_channel is not nullptr.\n");
+                f_channel = NULL;
+            }
         }
     }
 }
@@ -109,5 +117,40 @@ unsigned int getPositionFMOD() {
 void setPositionFMOD(unsigned int ms) {
     if (NULL != f_channel) {
         FMOD_Channel_SetPosition(f_channel, ms, FMOD_TIMEUNIT_MS);
+    }
+}
+
+void setVolumeFMOD(float volume) {
+    if (NULL != f_channel) {
+        FMOD_Channel_SetVolume(f_channel, volume);
+    }
+}
+
+void setFrequencyFMOD(float frequency) {
+    FMOD_Channel_SetFrequency(f_channel, frequency_base * frequency);
+}
+
+float getPitchFMOD() {
+    if (NULL != f_channel) {
+        float pitch;
+        FMOD_Channel_GetPitch(f_channel, &pitch);
+        return pitch;
+    }
+    return 0;
+}
+
+void setPitchFMOD(float pitch) {
+    if (NULL != f_channel) {
+        FMOD_Channel_SetPitch(f_channel, pitch);
+    }
+}
+
+void setPitchDspFMOD(float pitch) {
+    if (NULL != f_channel) {
+        if (NULL != f_dsp_pitch) {
+            FMOD_Channel_RemoveDSP(f_channel, f_dsp_pitch);
+        }
+        FMOD_DSP_SetParameterFloat(f_dsp_pitch, FMOD_DSP_PITCHSHIFT_PITCH, pitch);
+        FMOD_Channel_AddDSP(f_channel, 0, f_dsp_pitch);
     }
 }

@@ -63,6 +63,14 @@ func (that *Time) ExportString() string {
 		strconv.FormatInt(that.MicroSecond, 10))
 }
 
+func (that *Time) DisplayString() string {
+	return fmt.Sprintf("%s:%s:%s.%s",
+		that.HourString(),
+		that.MinuteString(),
+		that.SecondString(),
+		that.MicroHundredString())
+}
+
 func (that *Time) TransferTimeToTimestamp() int64 {
 	return ((that.Hour*60+that.Minute)*60+that.Second)*1000 + that.MicroSecond
 }
@@ -143,4 +151,9 @@ func TransferTimestampToTime(timestamp int64) *Time {
 		Second:      second,
 		MicroSecond: micro,
 	}
+}
+
+func TransferMillSecondToString(ms int64) string {
+	time := TransferTimestampToTime(ms)
+	return time.DisplayString()
 }

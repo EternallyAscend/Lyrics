@@ -24,15 +24,7 @@ func (that *Player) LoadMedia(path string) error {
 				that.music = true
 				that.position = 0
 				cc.SetMediaFMOD(that.path)
-				that.GetLength()
-				return nil
-			}
-		}
-		for index := range extensions.VideoSupportList {
-			if extensions.VideoSupportList[index] == extension {
-				that.music = false
-				that.position = 0
-				that.GetLength()
+				that.getLength()
 				return nil
 			}
 		}
@@ -48,14 +40,19 @@ func (that *Player) Playable() bool {
 
 func (that *Player) Play() {
 	if that.Playable() {
-		go cc.PlayFMOD()
-		that.playing = true
-		that.Listen()
+		if !that.playing {
+			cc.PlayFMOD()
+			go that.UpdateFMOD()
+			that.playing = true
+			that.Listen()
+		} else {
+			that.Pause()
+		}
 	}
 }
 
 func (that *Player) Pause() {
-	go cc.PauseFMOD()
+	cc.PauseFMOD()
 	that.playing = false
 }
 
@@ -64,15 +61,31 @@ func (that *Player) Stop() {
 	that.Pause()
 }
 
-func (that *Player) GetPlaying() bool {
+func (that *Player) getPlaying() {
 	that.playing = cc.GetPlayingFMOD()
+	//if !cc.GetPlayingFMOD() {
+	//	if that.playing {
+	//		that.playing = false
+	//		go func() {
+	//			time.Sleep(time.Millisecond * UpdateConfigFMOD)
+	//			that.UpdateFMOD()
+	//		}()
+	//		return
+	//	}
+	//}
+	//that.playing = true
+}
+
+func (that *Player) GetPlaying() bool {
 	return that.playing
 }
 
-func (that *Player) GetLength() uint32 {
+func (that *Player) getLength() {
 	if that.Playable() {
 		that.length = cc.GetLengthFMOD()
-		return that.length
 	}
-	return 0
+}
+
+func (that *Player) GetLength() uint32 {
+	return that.length
 }

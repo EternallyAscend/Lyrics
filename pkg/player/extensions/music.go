@@ -4,6 +4,6 @@ var MusicSupportList []string
 
 func LoadMusicSupportList() {
 	MusicSupportList = []string{
-		".wav", ".mp3", ".mp4",
+		".wav", ".mp3", ".flac",
 	}
 }

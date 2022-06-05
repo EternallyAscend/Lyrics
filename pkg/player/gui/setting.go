@@ -8,7 +8,16 @@ const FmodLogoX = 91
 const FmodLogoY = 24
 
 const MainWindowTitle = "Media Player"
-const MainWindowX = 800
-const MainWindowY = 600
+const MainWindowX = 1024
+const MainWindowY = 256
 
-const UpdatePositionTimeGapMS = 500
+const TimeCanvasX = 1024
+const TimeCanvasY = 64
+const TimeCanvasDataHeight = 4
+const TimeLineStart = 511
+const TimeLineEnd = 512
+const TimeTimeNumberL = 10
+const TimeTimeNumberR = 10
+
+const UpdatePositionTimeWaitMS = 100
+const UpdatePositionTimeGapMS = 200
