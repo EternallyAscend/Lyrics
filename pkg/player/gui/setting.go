@@ -14,6 +14,8 @@ const MainWindowY = 256
 const AboutWindowTitle = "About"
 const AboutWindowX = 256
 const AboutWindowY = 256
+const AboutFmodX = 384
+const AboutFmodY = 0
 const AboutInfo = "\t\tMedia Player\n\n" +
 	"This software provide functions for making cue, timeline srt and lrc.\n" +
 	"\n" +

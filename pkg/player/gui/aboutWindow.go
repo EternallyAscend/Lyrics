@@ -8,31 +8,29 @@ import (
 )
 
 type AboutWindow struct {
-	window fyne.Window
+	parent  fyne.Window
+	content *fyne.Container
 }
 
-func GenerateAboutWindow(app fyne.App) *AboutWindow {
+func GenerateAboutWindow(window fyne.Window) *AboutWindow {
 	aboutWindow := &AboutWindow{
-		window: app.NewWindow(AboutWindowTitle),
+		parent: window,
 	}
-	aboutWindow.window.Resize(fyne.NewSize(AboutWindowX, AboutWindowY))
-
-	content := container.NewWithoutLayout()
-	content.Resize(fyne.NewSize(AboutWindowX, AboutWindowY))
-	aboutWindow.window.SetContent(content)
+	aboutWindow.content = container.NewWithoutLayout()
+	aboutWindow.content.Resize(fyne.NewSize(AboutWindowX, AboutWindowY))
 
 	info := widget.NewLabel(AboutInfo)
-	content.Add(info)
+	aboutWindow.content.Add(info)
 
 	fmodImage := canvas.NewImageFromFile(FmodLogoPath)
-	content.Add(fmodImage)
+	aboutWindow.content.Add(fmodImage)
 	fmodImage.FillMode = canvas.ImageFillOriginal
 	fmodImage.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
-	fmodImage.Move(fyne.NewPos(0, 0))
+	fmodImage.Move(fyne.NewPos(AboutFmodX, AboutFmodY))
 
 	return aboutWindow
 }
 
-func (that *AboutWindow) Show() {
-
+func (that *AboutWindow) CanvasContent() *fyne.Container {
+	return that.content
 }

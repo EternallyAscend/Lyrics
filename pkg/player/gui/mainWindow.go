@@ -3,7 +3,6 @@ package gui
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/layout"
@@ -22,7 +21,8 @@ type mainWindow struct {
 	controller *Controller
 	time       *TimeView
 	wave       string
-	image      *fyne.Container
+	//image      *fyne.Container
+	about *AboutWindow
 }
 
 func GenerateMainWindow(daemon fyne.App, title string) *mainWindow {
@@ -34,13 +34,15 @@ func GenerateMainWindow(daemon fyne.App, title string) *mainWindow {
 	}
 	mainWindow.controller = GenerateController(mainWindow.window, mainWindow.player)
 	mainWindow.time = GenerateTimeView(mainWindow.window, mainWindow.player)
-	mainWindow.image = container.NewWithoutLayout()
-	mainWindow.image.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
-	fmodImage := canvas.NewImageFromFile(FmodLogoPath)
-	mainWindow.image.Add(fmodImage)
-	fmodImage.FillMode = canvas.ImageFillOriginal
-	fmodImage.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
-	fmodImage.Move(fyne.NewPos(0, 0))
+	// fmod logo image setting.
+	// mainWindow.image = container.NewWithoutLayout()
+	// mainWindow.image.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
+	// fmodImage := canvas.NewImageFromFile(FmodLogoPath)
+	// mainWindow.image.Add(fmodImage)
+	// fmodImage.FillMode = canvas.ImageFillOriginal
+	// fmodImage.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
+	// fmodImage.Move(fyne.NewPos(0, 0))
+	mainWindow.about = GenerateAboutWindow(mainWindow.window)
 	return mainWindow
 }
 
@@ -88,7 +90,11 @@ func (that *mainWindow) Start() {
 				}
 			}, that.window)
 			fileOpen.Show()
-		}), that.time.object, nil, that.image, widget.NewLabel("")),
+		}), that.time.object, widget.NewButton(AboutWindowTitle, func() {
+			aboutDialog := dialog.NewCustom(AboutWindowTitle, "OK", that.about.CanvasContent(), that.window)
+			aboutDialog.Show()
+		}), // that.image
+			nil, widget.NewLabel("")),
 		//that.controller.object,
 		// 控制栏和状态栏置于底部
 		layout.NewSpacer(),
