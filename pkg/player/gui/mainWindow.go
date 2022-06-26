@@ -3,6 +3,7 @@ package gui
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/layout"
@@ -20,7 +21,8 @@ type mainWindow struct {
 	player     *fmod.Player
 	controller *Controller
 	time       *TimeView
-	image      string
+	wave       string
+	image      *fyne.Container
 }
 
 func GenerateMainWindow(daemon fyne.App, title string) *mainWindow {
@@ -32,6 +34,13 @@ func GenerateMainWindow(daemon fyne.App, title string) *mainWindow {
 	}
 	mainWindow.controller = GenerateController(mainWindow.window, mainWindow.player)
 	mainWindow.time = GenerateTimeView(mainWindow.window, mainWindow.player)
+	mainWindow.image = container.NewWithoutLayout()
+	mainWindow.image.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
+	fmodImage := canvas.NewImageFromFile(FmodLogoPath)
+	mainWindow.image.Add(fmodImage)
+	fmodImage.FillMode = canvas.ImageFillOriginal
+	fmodImage.Resize(fyne.NewSize(FmodLogoX, FmodLogoY))
+	fmodImage.Move(fyne.NewPos(0, 0))
 	return mainWindow
 }
 
@@ -79,7 +88,7 @@ func (that *mainWindow) Start() {
 				}
 			}, that.window)
 			fileOpen.Show()
-		}), that.time.object, nil, nil, widget.NewLabel("")),
+		}), that.time.object, nil, that.image, widget.NewLabel("")),
 		//that.controller.object,
 		// 控制栏和状态栏置于底部
 		layout.NewSpacer(),

@@ -10,22 +10,22 @@ import (
 )
 
 type TimeView struct {
-	window    fyne.Window
-	object    *fyne.Container
-	player    *fmod.Player
-	time      *canvas.Raster
-	timeBasic [][]uint8
-	timeData  [][]uint8
+	window   fyne.Window
+	object   *fyne.Container
+	player   *fmod.Player
+	wave     *canvas.Raster
+	time     *canvas.Raster
+	timeData [][]uint8
+	waveData [][]uint8
 }
 
 func GenerateTimeView(window fyne.Window, player *fmod.Player) *TimeView {
 	tv := &TimeView{
-		window:    window,
-		object:    container.NewWithoutLayout(),
-		player:    player,
-		time:      nil,
-		timeBasic: nil,
-		timeData:  nil,
+		window:   window,
+		object:   container.NewWithoutLayout(),
+		player:   player,
+		time:     nil,
+		timeData: nil,
 	}
 	tv.object.Resize(fyne.NewSize(TimeCanvasX, TimeCanvasY))
 	tv.object.Add(tv.time)
@@ -33,16 +33,17 @@ func GenerateTimeView(window fyne.Window, player *fmod.Player) *TimeView {
 	return tv
 }
 
-func (that *TimeView) GenerateWaveData() {
-	cursorData := make([]uint8, TimeCanvasX)
-	for i := TimeLineStart; i <= TimeLineEnd; i++ {
-		log.Println(i)
-		cursorData[i] = 128
-	}
-	that.timeBasic = [][]uint8{
-		cursorData,
-	}
-}
+//
+//func (that *TimeView) GenerateWaveData() {
+//	cursorData := make([]uint8, TimeCanvasX)
+//	for i := TimeLineStart; i <= TimeLineEnd; i++ {
+//		log.Println(i)
+//		cursorData[i] = 128
+//	}
+//	that.timeBasic = [][]uint8{
+//		cursorData,
+//	}
+//}
 
 func (that *TimeView) DrawTime() {
 	that.object.Remove(that.time)
